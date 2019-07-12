@@ -8,8 +8,7 @@ Author: WowThemes
 Author URI: https://www.wowthemes.net
 License:           GPL-2.0+
 License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
-BannerHigh: https://raw.githubusercontent.com/wowthemesnet/wowpopup/master/public/img/wow-popup-banner.png
-BannerLow: https://raw.githubusercontent.com/wowthemesnet/wowpopup/master/public/img/wow-popup-banner.png
+GitHub Plugin URI: https://github.com/afragen/github-updater
 */
 if ( !defined( 'ABSPATH' ) ) {
     die;
@@ -99,14 +98,45 @@ function wowpopup_welcome_screen_do_activation_redirect() {
     wp_safe_redirect( add_query_arg( array( 'page' => 'wowpopup_options' ), admin_url( 'edit.php?post_type=wow_popup_type&' ) ) );
 }
 
-//  Free Updates because I love you
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-tgm-plugin-activation.php';
+add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
 
-require_once plugin_dir_path( __FILE__ ) . 'lib/wp-package-updater/class-wp-package-updater.php';
-
-$wowpopuplite_updater = new WP_Package_Updater(
-    'https://wowthemes.org',
-    wp_normalize_path( __FILE__ ),
-    wp_normalize_path( plugin_dir_path( __FILE__ ) ),
-    false // Can be omitted, false by default
-);
-
+/**
+ * Register the required plugins for this theme.
+ *
+ * In this example, we register five plugins:
+ * - one included with the TGMPA library
+ * - two from an external source, one from an arbitrary source, one from a GitHub repository
+ * - two from the .org repo, where one demonstrates the use of the `is_callable` argument
+ *
+ * The variables passed to the `tgmpa()` function should be:
+ * - an array of plugin arrays;
+ * - optionally a configuration array.
+ * If you are not changing anything in the configuration array, you can remove the array and remove the
+ * variable from the function call: `tgmpa( $plugins );`.
+ * In that case, the TGMPA default settings will be used.
+ *
+ * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
+ */
+function my_theme_register_required_plugins() {
+	$plugins = array(		
+		array(
+			'name'   => 'Github Updater',
+			'slug'   => 'github-updater',
+			'source' => 'https://github.com/afragen/github-updater/archive/develop.zip',
+		),
+	);
+	$config = array(
+		'id'           => 'tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to bundled plugins.
+		'menu'         => 'tgmpa-install-plugins', // Menu slug.
+		'parent_slug'  => 'themes.php',            // Parent menu slug.
+		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.
+	);
+    tgmpa( $plugins, $config );
+}
