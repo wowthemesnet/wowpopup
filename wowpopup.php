@@ -3,12 +3,12 @@
 Plugin Name: Wow Popup
 Plugin URI: https://www.wowthemes.net/wowplugins/wowpopup-wp-plugin/
 Description: Flexible, yet extremely easy to set up WordPress plugin for PopUps, FlyIns and Notice Bars. Boost your sales in no time, convert your visitors to members, watchers, subscribers, you name it! 
-Version: 1.0.3
+Version: 1.0.4
 Author: WowThemes
 Author URI: https://www.wowthemes.net
 License:           GPL-2.0+
 License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
-GitHub Plugin URI: https://github.com/afragen/github-updater
+GitHub Plugin URI: https://github.com/wowthemesnet/wowpopup
 */
 if ( !defined( 'ABSPATH' ) ) {
     die;
