@@ -23,7 +23,7 @@ class WowPopupPlugin
     {
         // Set up default vars
         $this->plugin_name = 'wowpopup';
-        $this->version = '1.0.1';
+        $this->version = '1.0.3';
         $this->plugin_path = plugin_dir_path( __FILE__ );
         $this->plugin_url = plugin_dir_url( __FILE__ );
         // Set up activation hooks
