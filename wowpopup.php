@@ -102,7 +102,7 @@ function wowpopup_welcome_screen_do_activation_redirect() {
 require_once plugin_dir_path( __FILE__ ) . 'lib/wp-package-updater/class-wp-package-updater.php';
 
 $wowpopuplite_updater = new WP_Package_Updater(
-    'https://localhost',
+    'https://wowthemes.org',
     wp_normalize_path( __FILE__ ),
     wp_normalize_path( plugin_dir_path( __FILE__ ) ),
     false // Can be omitted, false by default
