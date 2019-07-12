@@ -1,5 +1,5 @@
 === Wow Popup ===
-Contributors: wowthemesnet
+Contributors: Wow Themes
 Donate link: https://www.wowthemes.net/donate/
 Tags: popup
 Requires at least: 5.2
