@@ -8,6 +8,8 @@ Author: wowthemesnet
 Author URI: https://www.wowthemes.net
 License:           GPL-2.0+
 License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+BannerHigh: https://raw.githubusercontent.com/wowthemesnet/wowpopup/master/public/img/wow-popup-banner.png
+BannerLow: https://raw.githubusercontent.com/wowthemesnet/wowpopup/master/public/img/wow-popup-banner.png
 */
 if ( !defined( 'ABSPATH' ) ) {
     die;
